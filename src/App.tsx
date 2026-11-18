@@ -30,6 +30,7 @@ import {
   removeAdminEmail,
   returnBooking,
   signInWithGoogleAccount,
+  subscribeRealtimeUpdates,
   updateEquipment,
   updateProfile,
 } from './lib/api';
@@ -117,22 +118,11 @@ export default function App() {
     loadState();
   }, [loadState]);
 
-  // Real-time availability synchronization across devices/tabs via SSE
+  // Real-time availability synchronization across devices/tabs
   useEffect(() => {
-    const eventSource = new EventSource('/api/events');
-    eventSource.onmessage = (event) => {
-      try {
-        const parsed = JSON.parse(event.data);
-        if (parsed.type === 'state-updated') {
-          loadState();
-        }
-      } catch {
-        // Ignore malformed SSE heartbeats
-      }
-    };
-    return () => {
-      eventSource.close();
-    };
+    return subscribeRealtimeUpdates(() => {
+      loadState();
+    });
   }, [loadState]);
 
   const currentUser = appState?.currentUser || null;
