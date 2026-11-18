@@ -1,0 +1,6 @@
+{
+  "name": "ระบบยืม-คืนอุปกรณ์ ภาควิชาเทคโนโลยีการศึกษา",
+  "description": "ระบบบริหารจัดการและจองยืม-คืนอุปกรณ์โสตทัศนูปกรณ์ ภาควิชาเทคโนโลยีการศึกษา ตรวจสอบความพร้อมแบบเรียลไทม์",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
